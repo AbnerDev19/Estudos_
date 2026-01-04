@@ -19,18 +19,14 @@
             <div class="admin-logo">
                 <span class="material-symbols-outlined" style="color:var(--admin-accent)">security</span>
                 Portal<span style="color:var(--admin-accent)">.Admin</span>
-                <span class="tag-adm">MASTER</span>
-            </div>
+                </div>
 
             <ul class="admin-nav">
-                <li class="active"><a href="admin_dashboard.html"><span
-                            class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
-                <li><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar
-                        Turmas</a></li>
-                <li><a href="#"><span class="material-symbols-outlined">group</span>Alunos</a></li>
-                <li><a href="#"><span class="material-symbols-outlined">settings</span>Configurações</a></li>
-                <li style="margin-top: auto;"><a href="index.html" style="color:#ff5252"><span
-                            class="material-symbols-outlined">logout</span>Sair</a></li>
+                <li class="active"><a href="admin_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar Turmas</a></li>
+                <li><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
+                <li><a href="admin_questions.html"><span class="material-symbols-outlined">quiz</span>Banco de Questões</a></li>
+                <li style="margin-top: auto;"><a href="index.html" style="color:#ff5252"><span class="material-symbols-outlined">logout</span>Sair</a></li>
             </ul>
         </aside>
 
@@ -38,7 +34,7 @@
             <header class="admin-header">
                 <div>
                     <h1>Painel de Controle</h1>
-                    <p>Bem-vindo, Administrador Supremo.</p>
+                    <p>Visão geral do desempenho da plataforma.</p>
                 </div>
                 <div style="display:flex; align-items:center; gap:10px; color:white">
                     <span class="material-symbols-outlined">account_circle</span> Admin
@@ -63,15 +59,19 @@
                         </div>
                     </div>
                     <div class="kpi-box">
-                        <div class="kpi-icon"><span class="material-symbols-outlined">payments</span></div>
+                        <div class="kpi-icon"><span class="material-symbols-outlined">library_books</span></div>
                         <div class="kpi-info">
-                            <h3>R$ 42k</h3>
-                            <span>Receita Mensal</span>
+                            <h3>4.520</h3>
+                            <span>Questões no Banco</span>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="color:white; margin-bottom:15px">Últimos Cadastros</h3>
+                <h3 style="color:white; margin-bottom:15px; margin-top:10px">Desempenho das Turmas Principais</h3>
+                <div class="kpi-row" id="dashboard-turmas-stats">
+                    </div>
+
+                <h3 style="color:white; margin-bottom:15px; margin-top:20px">Últimos Cadastros</h3>
                 <div class="table-wrapper">
                     <table class="adm-table">
                         <thead>
@@ -83,32 +83,8 @@
                                 <th>Ação</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Carlos Souza</td>
-                                <td>carlos@email.com</td>
-                                <td>CBMDF 2025</td>
-                                <td style="color:#00e676">Ativo</td>
-                                <td><span class="material-symbols-outlined"
-                                        style="font-size:18px; cursor:pointer">more_vert</span></td>
-                            </tr>
-                            <tr>
-                                <td>Ana Paula</td>
-                                <td>ana@email.com</td>
-                                <td>Polícia Civil</td>
-                                <td style="color:#ff5252">Pendente</td>
-                                <td><span class="material-symbols-outlined"
-                                        style="font-size:18px; cursor:pointer">more_vert</span></td>
-                            </tr>
-                            <tr>
-                                <td>Marcos Lima</td>
-                                <td>marcos@email.com</td>
-                                <td>TJ-SP</td>
-                                <td style="color:#00e676">Ativo</td>
-                                <td><span class="material-symbols-outlined"
-                                        style="font-size:18px; cursor:pointer">more_vert</span></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="lista-alunos-recentes">
+                            </tbody>
                     </table>
                 </div>
 
@@ -116,6 +92,7 @@
         </div>
     </div>
 
+    <script type="module" src="js/admin.js"></script>
 </body>
 
 </html>

@@ -362,6 +362,27 @@ body {
     background: var(--primary-blue);
     border-color: var(--primary-blue);
 }
+/* Botão de Adicionar (Agenda) */
+.btn-icon {
+    background: rgba(41, 98, 255, 0.1); /* Fundo azul bem clarinho */
+    border: 1px solid rgba(41, 98, 255, 0.2);
+    color: var(--primary-blue);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(41, 98, 255, 0.4);
+}
 
 /* --- DIREITA (Agenda) --- */
 .right-column .card {

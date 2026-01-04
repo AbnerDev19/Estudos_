@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Tático - Portal de Estudos</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/painel_tatico.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
+    <link rel="stylesheet" href="css/painel_tatico.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="background-blur dashboard-blur"></div>
     <div class="app-container">
-        
-        <nav class="sidebar">
-            <div class="logo-area"><h2>Portal<span class="highlight">.Estudo</span></h2></div>
-            <ul class="nav-links">
-                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
-                <li><a href="editais.html"><span class="material-symbols-outlined">description</span>Meus Editais</a></li>
-                <li><a href="cronograma.html"><span class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
-                <li><a href="turmas.html"><span class="material-symbols-outlined">school</span>Minhas Turmas</a></li>
-                <li class="active"><a href="painel_tatico.html"><span class="material-symbols-outlined">query_stats</span>Painel Tático</a></li>
-               
-            </ul>
-        </nav>
 
+        <nav class="sidebar">
+            <div class="logo-area">
+                <h2>Portal<span class="highlight">.Estudo</span></h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a>
+                </li>
+                <li><a href="editais.html"><span class="material-symbols-outlined">description</span>Meus Editais</a>
+                </li>
+                <li><a href="cronograma.html"><span
+                            class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
+                <li><a href="turmas.html"><span class="material-symbols-outlined">school</span>Minhas Turmas</a></li>
+                <li class="active"><a href="painel_tatico.html"><span
+                            class="material-symbols-outlined">query_stats</span>Painel Tático</a></li>
+
+            </ul>
+            <div class="user-profile">
+                <div class="avatar-circle">A</div>
+                <div class="user-info">
+                    <p class="user-name">Aluno Exemplo</p>
+                    <a href="index.html" class="logout-link">Sair</a>
+                </div>
+            </div>
+        </nav>
         <main class="main-content">
             <header class="top-bar">
                 <div class="welcome-text">
@@ -76,7 +92,7 @@
             </div>
 
             <div class="charts-grid">
-                
+
                 <div class="chart-container large">
                     <div class="chart-header">
                         <h3>📈 Evolução de Notas (Simulados)</h3>
@@ -138,4 +154,5 @@
 
     <script type="module" src="js/painel_tatico.js"></script>
 </body>
+
 </html>

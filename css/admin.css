@@ -130,16 +130,22 @@ body {
     flex-wrap: wrap;
 }
 
+/* Se não existir, adicione ou ajuste */
 .kpi-box {
-    flex: 1;
-    min-width: 200px;
-    background: #161616;
-    border: 1px solid var(--admin-border);
-    padding: 20px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    /* Mantém o estilo base, mas permite overrides via style inline no JS */
+    flex: 1; min-width: 250px;
+    background: #161616; border: 1px solid var(--admin-border);
+    padding: 20px; border-radius: 12px;
+    /* Removemos o display:flex fixo daqui se formos usar display:block no inline, 
+       ou criamos uma classe específica para turmas */
+}
+
+/* Sugestão: Classe específica para os cards de turma */
+.turma-kpi-card {
+    flex: 1; min-width: 280px;
+    background: #161616; border: 1px solid var(--admin-border);
+    padding: 20px; border-radius: 12px;
+    display: flex; flex-direction: column; gap: 10px;
 }
 
 .kpi-icon {
@@ -672,4 +678,44 @@ body {
 
 .input-group.half {
     flex: 1;
+}
+/* --- DETALHES DE UI & FEEDBACK --- */
+
+/* Notificação Toast (Feedback de Ação) */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #18181b;
+    border: 1px solid #333;
+    border-left: 4px solid var(--admin-accent);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 2000;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-notification.success { border-left-color: #00e676; }
+.toast-notification.error { border-left-color: #ff5252; }
+
+/* Animação suave nos filtros */
+.adm-table tbody tr {
+    animation: fadeSlideIn 0.3s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,38 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
+
 <body>
     <div class="background-blur dashboard-blur"></div>
     <div class="app-container">
-        
+
         <nav class="sidebar">
-            <div class="logo-area"><h2>Portal<span class="highlight">.Estudo</span></h2></div>
+            <div class="logo-area">
+                <h2>Portal<span class="highlight">.Estudo</span></h2>
+            </div>
             <ul class="nav-links">
-                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
-                <li class="active"><a href="#"><span class="material-symbols-outlined">description</span>Meus Editais</a></li>
-                <li><a href="cronograma.html"><span class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a>
+                </li>
+                <li class="active"><a href="#"><span class="material-symbols-outlined">description</span>Meus
+                        Editais</a></li>
+                <li><a href="cronograma.html"><span
+                            class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
                 <li><a href="turmas.html"><span class="material-symbols-outlined">school</span>Minhas Turmas</a></li>
-                <li><a href="painel_tatico.html"><span class="material-symbols-outlined">query_stats</span>Painel Tático</a></li>
+                <li><a href="painel_tatico.html"><span class="material-symbols-outlined">query_stats</span>Painel
+                        Tático</a></li>
             </ul>
+            <div class="user-profile">
+                <div class="avatar-circle">A</div>
+                <div class="user-info">
+                    <p class="user-name">Aluno Exemplo</p>
+                    <a href="index.html" class="logout-link">Sair</a>
+                </div>
+            </div>
         </nav>
+
 
         <main class="main-content">
             <header class="top-bar">
@@ -33,7 +50,7 @@
             </header>
 
             <div class="editais-catalog" id="lista-editais">
-                </div>
+            </div>
         </main>
     </div>
 
@@ -41,7 +58,7 @@
         import { db_editais } from './db_editais.js';
 
         const container = document.getElementById('lista-editais');
-        
+
         // Renderiza os cards
         db_editais.forEach(edital => {
             const statusClass = edital.aberto ? 'status-open' : 'status-closed';
@@ -66,4 +83,5 @@
         });
     </script>
 </body>
+
 </html>
