@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma - Portal de Estudos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/cronograma.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <div class="background-blur dashboard-blur"></div>
+    <div class="app-container">
+        
+        <nav class="sidebar">
+            <div class="logo-area"><h2>Portal<span class="highlight">.Estudo</span></h2></div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li><a href="editais.html"><span class="material-symbols-outlined">description</span>Meus Editais</a></li>
+                <li class="active"><a href="cronograma.html"><span class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
+                <li><a href="turmas.html"><span class="material-symbols-outlined">school</span>Minhas Turmas</a></li>
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">query_stats</span>Painel Tático</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Seu Cronograma</h1>
+                    <p>Organize sua rotina e não perca nenhuma data importante.</p>
+                </div>
+            </header>
+
+            <div class="cronograma-grid">
+                
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prev-month" class="nav-btn"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <h2 id="month-year-display">Janeiro de 2026</h2>
+                        <button id="next-month" class="nav-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                    
+                    <div class="weekdays-row">
+                        <div>DOM</div><div>SEG</div><div>TER</div><div>QUA</div><div>QUI</div><div>SEX</div><div>SÁB</div>
+                    </div>
+
+                    <div class="days-grid" id="days-grid">
+                        </div>
+
+                    <div class="calendar-legend">
+                        <div class="legend-item"><span class="dot red"></span> Prova</div>
+                        <div class="legend-item"><span class="dot blue"></span> Estudo</div>
+                        <div class="legend-item"><span class="dot green"></span> Revisão</div>
+                    </div>
+                </div>
+
+                <div class="details-panel">
+                    
+                    <div class="selected-date-header">
+                        <span id="selected-day-number" class="big-number">03</span>
+                        <div class="selected-day-info">
+                            <span id="selected-week-day">Sábado</span>
+                            <span id="selected-full-date">Janeiro, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3>📌 Para Fazer Hoje</h3>
+                        <div class="tasks-container" id="daily-tasks">
+                            <p class="empty-msg">Selecione um dia para ver as tarefas.</p>
+                        </div>
+                    </div>
+
+                    <div class="panel-section highlight-section">
+                        <h3>📊 Resumo da Semana</h3>
+                        <p class="section-desc">Desempenho acumulado desta semana:</p>
+                        
+                        <div class="stats-mini-grid">
+                            <div class="stat-box">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <strong id="week-done">0</strong>
+                                <small>Feitos</small>
+                            </div>
+                            <div class="stat-box">
+                                <span class="material-symbols-outlined">pending</span>
+                                <strong id="week-todo">0</strong>
+                                <small>Pendentes</small>
+                            </div>
+                        </div>
+
+                        <div class="progress-week-container">
+                            <div class="progress-week-bar" id="week-progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/db_cronograma.js"></script>
+</body>
+</html>

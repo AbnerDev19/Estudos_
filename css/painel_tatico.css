@@ -1,0 +1,238 @@
+/* Layout Geral */
+.top-bar {
+    align-items: center;
+}
+
+/* Botões de Período */
+.period-selector {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    gap: 5px;
+}
+
+.period-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-gray);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+
+.period-btn.active,
+.period-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* --- 1. KPIs --- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: linear-gradient(145deg, rgba(30, 30, 35, 0.8), rgba(20, 20, 25, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card.highlight {
+    border-color: #00e676;
+    background: rgba(0, 230, 118, 0.05);
+}
+
+.kpi-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.kpi-icon.blue {
+    background: rgba(41, 98, 255, 0.1);
+    color: #2962ff;
+}
+
+.kpi-icon.purple {
+    background: rgba(156, 39, 176, 0.1);
+    color: #ab47bc;
+}
+
+.kpi-icon.orange {
+    background: rgba(255, 152, 0, 0.1);
+    color: #ffa726;
+}
+
+.kpi-icon.green {
+    background: rgba(0, 230, 118, 0.1);
+    color: #00e676;
+}
+
+.kpi-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+}
+
+.kpi-label {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-top: 4px;
+}
+
+.kpi-trend {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.kpi-trend.positive {
+    color: #00e676;
+    background: rgba(0, 230, 118, 0.1);
+}
+
+.kpi-trend.negative {
+    color: #ff5252;
+    background: rgba(255, 82, 82, 0.1);
+}
+
+/* --- 2. GRÁFICOS --- */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Evolução maior, Radar menor */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header h3 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.canvas-wrapper {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+    /* Altura mínima para o gráfico */
+}
+
+/* --- 3. MATRIZ TÁTICA --- */
+.tactical-matrix-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.matrix-card {
+    border-radius: 12px;
+    padding: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.matrix-card.bad {
+    background: rgba(255, 82, 82, 0.05);
+    border-top: 3px solid #ff5252;
+}
+
+.matrix-card.average {
+    background: rgba(255, 171, 0, 0.05);
+    border-top: 3px solid #ffab00;
+}
+
+.matrix-card.good {
+    background: rgba(0, 230, 118, 0.05);
+    border-top: 3px solid #00e676;
+}
+
+.matrix-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.matrix-header h3 {
+    font-size: 0.95rem;
+    color: white;
+}
+
+.matrix-header span {
+    font-size: 1.2rem;
+}
+
+.bad .matrix-header span {
+    color: #ff5252;
+}
+
+.average .matrix-header span {
+    color: #ffab00;
+}
+
+.good .matrix-header span {
+    color: #00e676;
+}
+
+.matrix-list {
+    list-style: none;
+}
+
+.matrix-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.matrix-list li:last-child {
+    border-bottom: none;
+}
+
+.matrix-list li span {
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 900px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}

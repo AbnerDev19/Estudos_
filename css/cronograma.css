@@ -1,0 +1,317 @@
+/* Layout Principal Dividido */
+.cronograma-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    /* Calendário maior, detalhes menor */
+    gap: 2rem;
+    height: calc(100vh - 150px);
+}
+
+/* --- CALENDÁRIO (Esquerda) --- */
+.calendar-container {
+    background: rgba(30, 30, 40, 0.95);
+    /* Fundo bem escuro estilo a imagem */
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho do Mês */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.calendar-header h2 {
+    color: white;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-gray);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Dias da Semana (DOM, SEG...) */
+.weekdays-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grid de Dias */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    flex: 1;
+}
+
+.calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    /* Altura do dia */
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.calendar-day:hover:not(.empty) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.calendar-day.empty {
+    cursor: default;
+}
+
+/* O ESTILO LARANJA DA IMAGEM */
+.calendar-day.active {
+    background-color: #ff5722;
+    /* Laranja vibrante */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+    transform: scale(1.05);
+}
+
+/* Indicadores (Bolinhas) */
+.day-dots {
+    display: flex;
+    gap: 3px;
+    position: absolute;
+    bottom: 8px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background-color: #ff5252;
+    box-shadow: 0 0 5px #ff5252;
+}
+
+/* Prova */
+.dot.blue {
+    background-color: #448aff;
+}
+
+/* Estudo */
+.dot.green {
+    background-color: #00e676;
+}
+
+/* Revisão */
+
+/* Legenda */
+.calendar-legend {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+.legend-item {
+    color: var(--text-gray);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* --- PAINEL DE DETALHES (Direita) --- */
+.details-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Cabeçalho da Data Selecionada */
+.selected-date-header {
+    background: linear-gradient(135deg, #ff5722 0%, #ff8a50 100%);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 87, 34, 0.3);
+}
+
+.big-number {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.selected-day-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#selected-week-day {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#selected-full-date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Seções do Painel */
+.panel-section {
+    background: rgba(18, 18, 18, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.panel-section h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-desc {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+/* Lista de Tarefas */
+.task-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid transparent;
+}
+
+.task-card.type-prova {
+    border-left-color: #ff5252;
+    background: rgba(255, 82, 82, 0.1);
+}
+
+.task-card.type-estudo {
+    border-left-color: #448aff;
+}
+
+.task-card.type-revisao {
+    border-left-color: #00e676;
+}
+
+.task-card h4 {
+    color: white;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.task-card p {
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+.empty-msg {
+    color: var(--text-gray);
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Resumo da Semana */
+.stats-mini-grid {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat-box {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box strong {
+    font-size: 1.2rem;
+    color: white;
+    display: block;
+}
+
+.stat-box small {
+    font-size: 0.7rem;
+    color: var(--text-gray);
+}
+
+.stat-box .material-symbols-outlined {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--primary-blue);
+}
+
+.progress-week-container {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-week-bar {
+    height: 100%;
+    background: #00e676;
+    transition: width 0.5s;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .cronograma-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}

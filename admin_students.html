@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Alunos - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="admin-layout">
+        
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <span class="material-symbols-outlined" style="color:var(--admin-accent)">security</span>
+                Portal<span style="color:var(--admin-accent)">.Admin</span>
+            </div>
+            <ul class="admin-nav">
+                <li><a href="admin_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar Turmas</a></li>
+                <li class="active"><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
+                <li><a href="admin_questions.html"><span class="material-symbols-outlined">quiz</span>Banco de Questões</a></li>
+            </ul>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div>
+                    <h1>Controle de Alunos</h1>
+                    <p>Gerencie acessos, veja progresso individual e resolva tickets.</p>
+                </div>
+                <div class="search-box-admin">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" placeholder="Buscar por nome ou email...">
+                </div>
+            </header>
+
+            <div class="admin-content-scroll">
+                
+                <div class="filter-bar">
+                    <button class="filter-btn active">Todos</button>
+                    <button class="filter-btn">Ativos</button>
+                    <button class="filter-btn">Bloqueados</button>
+                    <button class="filter-btn">Inadimplentes</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="adm-table">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Turma Principal</th>
+                                <th>Progresso</th>
+                                <th>Último Acesso</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-alunos-completa">
+                            </tbody>
+                    </table>
+                    <div class="pagination">
+                        <span>Mostrando 1-10 de 1240</span>
+                        <div class="page-controls">
+                            <button><</button>
+                            <button class="active">1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="student-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Detalhes do Aluno</h3>
+                <span class="material-symbols-outlined close-modal">close</span>
+            </div>
+            <div class="modal-body">
+                <div class="student-profile-header">
+                    <div class="avatar-large">JS</div>
+                    <div>
+                        <h2>João Silva</h2>
+                        <p>joao@email.com</p>
+                        <span class="status-pill active">Ativo</span>
+                    </div>
+                </div>
+                
+                <div class="stats-mini-row">
+                    <div class="stat-box-small">
+                        <small>Média Geral</small>
+                        <strong>78%</strong>
+                    </div>
+                    <div class="stat-box-small">
+                        <small>Questões</small>
+                        <strong>1.204</strong>
+                    </div>
+                    <div class="stat-box-small">
+                        <small>Turma</small>
+                        <strong>CBMDF</strong>
+                    </div>
+                </div>
+
+                <hr class="modal-divider">
+
+                <h4 style="color:#ddd; margin-bottom:10px">Ações Administrativas</h4>
+                <div class="modal-actions">
+                    <button class="btn-action secondary">Resetar Senha</button>
+                    <button class="btn-action secondary">Ver Histórico</button>
+                    <button class="btn-action danger">Bloquear Acesso</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

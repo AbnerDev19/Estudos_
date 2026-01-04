@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Turmas - Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="admin-layout">
+        
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <span class="material-symbols-outlined" style="color:var(--admin-accent)">security</span>
+                Portal<span style="color:var(--admin-accent)">.Admin</span>
+            </div>
+            <ul class="admin-nav">
+                <li><a href="admin_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li class="active"><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar Turmas</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">group</span>Alunos</a></li>
+            </ul>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div>
+                    <h1>Gerenciar Conteúdo</h1>
+                    <p>Edite as turmas, semanas e metas dos alunos.</p>
+                </div>
+                <button class="btn-save">+ Nova Turma</button>
+            </header>
+
+            <div class="admin-content-scroll">
+                
+                <div class="manager-layout">
+                    
+                    <div class="turmas-list-panel">
+                        <div class="panel-header">
+                            <h3>Turmas Disponíveis</h3>
+                            <span class="material-symbols-outlined" style="cursor:pointer">filter_list</span>
+                        </div>
+                        <div class="list-scroll" id="admin-turmas-list">
+                            <div class="turma-item active">
+                                <span>CBMDF 2025</span>
+                                <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+                            </div>
+                            <div class="turma-item">
+                                <span>Polícia Civil</span>
+                                <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+                            </div>
+                            <div class="turma-item">
+                                <span>Tribunal de Justiça</span>
+                                <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editor-panel">
+                        <div class="editor-top">
+                            <h2 id="editor-turma-nome">Editando: CBMDF 2025</h2>
+                            <button class="btn-save">Salvar Alterações</button>
+                        </div>
+                        
+                        <div class="editor-scroll">
+                            
+                            <div class="input-group">
+                                <label>Nome da Turma</label>
+                                <input type="text" class="dark-input" value="Concurso CBMDF 2025">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Mensagem de Foco (Semana Atual)</label>
+                                <input type="text" class="dark-input" value="Foco em Legislação e Resolução de Questões">
+                            </div>
+
+                            <hr style="border:0; border-top:1px solid #333; margin: 20px 0;">
+
+                            <h3 style="color:white; margin-bottom:15px">Cronograma de Semanas</h3>
+
+                            <div class="week-block">
+                                <div class="week-title-bar">
+                                    <span>Semana 1</span>
+                                    <div class="actions">
+                                        <span class="material-symbols-outlined icon-btn">expand_more</span>
+                                        <span class="material-symbols-outlined icon-btn" style="color:#ff5252">delete</span>
+                                    </div>
+                                </div>
+                                <div class="week-body">
+                                    <div class="task-row">
+                                        <input type="text" class="dark-input" value="Ler Artigos 1-30">
+                                        <input type="text" class="dark-input" style="width:120px" value="Legislação">
+                                        <span class="material-symbols-outlined icon-btn">close</span>
+                                    </div>
+                                    <div class="task-row">
+                                        <input type="text" class="dark-input" value="Resolver lista de Crase">
+                                        <input type="text" class="dark-input" style="width:120px" value="Português">
+                                        <span class="material-symbols-outlined icon-btn">close</span>
+                                    </div>
+                                    <button class="btn-add">+ Adicionar Tarefa</button>
+                                </div>
+                            </div>
+
+                            <div class="week-block">
+                                <div class="week-title-bar">
+                                    <span>Semana 2</span>
+                                    <div class="actions">
+                                        <span class="material-symbols-outlined icon-btn">expand_more</span>
+                                        <span class="material-symbols-outlined icon-btn" style="color:#ff5252">delete</span>
+                                    </div>
+                                </div>
+                                <div class="week-body">
+                                    <p style="color:#666; font-size:0.9rem; text-align:center">Nenhuma tarefa adicionada.</p>
+                                    <button class="btn-add">+ Adicionar Tarefa</button>
+                                </div>
+                            </div>
+
+                            <button class="btn-add" style="border: 1px solid var(--admin-accent); color:var(--admin-accent); margin-top:10px">
+                                + Nova Semana
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Tático - Portal de Estudos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/painel_tatico.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-blur dashboard-blur"></div>
+    <div class="app-container">
+        
+        <nav class="sidebar">
+            <div class="logo-area"><h2>Portal<span class="highlight">.Estudo</span></h2></div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li><a href="editais.html"><span class="material-symbols-outlined">description</span>Meus Editais</a></li>
+                <li><a href="cronograma.html"><span class="material-symbols-outlined">calendar_month</span>Cronograma</a></li>
+                <li><a href="turmas.html"><span class="material-symbols-outlined">school</span>Minhas Turmas</a></li>
+                <li class="active"><a href="painel_tatico.html"><span class="material-symbols-outlined">query_stats</span>Painel Tático</a></li>
+               
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Painel Tático de Desempenho</h1>
+                    <p>Análise métrica da sua evolução e pontos de melhoria.</p>
+                </div>
+                <div class="period-selector">
+                    <button class="period-btn active">7 Dias</button>
+                    <button class="period-btn">30 Dias</button>
+                    <button class="period-btn">Geral</button>
+                </div>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon blue"><span class="material-symbols-outlined">trending_up</span></div>
+                    <div class="kpi-data">
+                        <span class="kpi-value">78%</span>
+                        <span class="kpi-label">Taxa de Acerto Geral</span>
+                    </div>
+                    <span class="kpi-trend positive">▲ 2.4%</span>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon purple"><span class="material-symbols-outlined">quiz</span></div>
+                    <div class="kpi-data">
+                        <span class="kpi-value">1.420</span>
+                        <span class="kpi-label">Questões Resolvidas</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon orange"><span class="material-symbols-outlined">hourglass_top</span></div>
+                    <div class="kpi-data">
+                        <span class="kpi-value">42h</span>
+                        <span class="kpi-label">Estudo Líquido (Mês)</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card highlight">
+                    <div class="kpi-icon green"><span class="material-symbols-outlined">verified</span></div>
+                    <div class="kpi-data">
+                        <span class="kpi-value">Alta</span>
+                        <span class="kpi-label">Probabilidade de Aprovação</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3>📈 Evolução de Notas (Simulados)</h3>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="evolutionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>🎯 Radar de Competências</h3>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tactical-matrix-area">
+                <div class="matrix-card bad">
+                    <div class="matrix-header">
+                        <span class="material-symbols-outlined">warning</span>
+                        <h3>Atenção Imediata ( < 60% )</h3>
+                    </div>
+                    <ul class="matrix-list">
+                        <li>Raciocínio Lógico <span>45%</span></li>
+                        <li>Direito Empresarial <span>52%</span></li>
+                    </ul>
+                </div>
+
+                <div class="matrix-card average">
+                    <div class="matrix-header">
+                        <span class="material-symbols-outlined">trending_flat</span>
+                        <h3>Em Evolução ( 60% - 80% )</h3>
+                    </div>
+                    <ul class="matrix-list">
+                        <li>Direito Constitucional <span>72%</span></li>
+                        <li>Informática <span>68%</span></li>
+                        <li>Português <span>78%</span></li>
+                    </ul>
+                </div>
+
+                <div class="matrix-card good">
+                    <div class="matrix-header">
+                        <span class="material-symbols-outlined">stars</span>
+                        <h3>Pontos Fortes ( > 80% )</h3>
+                    </div>
+                    <ul class="matrix-list">
+                        <li>Direito Administrativo <span>92%</span></li>
+                        <li>Legislação Especial <span>88%</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/painel_tatico.js"></script>
+</body>
+</html>

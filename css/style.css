@@ -1,0 +1,218 @@
+/* RESET E CONFIGURAÇÕES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --bg-color: #050505; /* Preto quase absoluto */
+    --card-bg: #121212;
+    --primary-blue: #2962ff;
+    --primary-gradient: linear-gradient(135deg, #2962ff 0%, #00b0ff 100%);
+    --text-white: #ffffff;
+    --text-gray: #a1a1aa;
+    --border-color: #27272a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Para o blur não criar scroll */
+    position: relative;
+}
+
+/* EFEITO DE FUNDO (GLOW AZUL) */
+.background-blur {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(41, 98, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* CARTÃO DE LOGIN */
+.login-card {
+    background-color: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(20px); /* Efeito de vidro */
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* CABEÇALHO */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Texto degradê */
+}
+
+.login-header p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+/* INPUTS */
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background-color: #1a1a1a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.2);
+}
+
+/* AÇÕES SECUNDÁRIAS */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-pass {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-pass:hover {
+    color: white;
+}
+
+/* BOTÃO ENTRAR */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(41, 98, 255, 0.4);
+}
+
+/* DIVISOR */
+.divider {
+    margin: 1.5rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.divider span {
+    position: relative;
+    background-color: #121212; /* Mesma cor do card para "cortar" a linha */
+    padding: 0 10px;
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+/* BOTÃO GOOGLE */
+.btn-google {
+    width: 100%;
+    padding: 12px;
+    background-color: white;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-google:hover {
+    background-color: #f1f1f1;
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* LINK CADASTRO */
+.register-link {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.register-link a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* MENSAGEM ERRO */
+#msg-erro {
+    color: #ff5252;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    display: none;
+}

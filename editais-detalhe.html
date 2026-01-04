@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Edital</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <div class="background-blur dashboard-blur"></div>
+    <div class="app-container">
+        
+        <nav class="sidebar">
+            <div class="logo-area"><h2>Portal<span class="highlight">.Estudo</span></h2></div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
+                <li class="active"><a href="editais.html"><span class="material-symbols-outlined">description</span>Meus Editais</a></li>
+                </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="edital-header-area">
+                <a href="editais.html" class="back-btn"><span class="material-symbols-outlined">arrow_back</span> Voltar</a>
+                <h1 id="titulo-edital" style="font-size: 2rem; margin-top:10px">Carregando...</h1>
+                <p id="subtitulo-edital" style="color: var(--text-gray)">...</p>
+            </div>
+
+            <div id="conteudo-programatico"></div>
+
+        </main>
+    </div>
+
+    <script type="module">
+        import { db_editais } from './db_editais.js';
+
+        // 1. Pegar o ID da URL (ex: ?id=1)
+        const params = new URLSearchParams(window.location.search);
+        const idEdital = parseInt(params.get('id'));
+
+        // 2. Buscar no "Banco de Dados"
+        const edital = db_editais.find(e => e.id === idEdital);
+
+        if (!edital) {
+            alert("Edital não encontrado!");
+            window.location.href = "editais.html";
+        } else {
+            renderizarEdital(edital);
+        }
+
+        // 3. Função que desenha a tela baseada no que o ADM definiu
+        function renderizarEdital(dados) {
+            // Preenche Título
+            document.getElementById('titulo-edital').innerText = dados.orgao;
+            document.getElementById('subtitulo-edital').innerText = `Banca: ${dados.banca} | Cargo: ${dados.cargo}`;
+
+            const container = document.getElementById('conteudo-programatico');
+            
+            // Loop pelas Matérias (Definidas pelo ADM)
+            dados.materias.forEach((materia, indexMateria) => {
+                
+                // Cria o HTML dos tópicos dessa matéria
+                let topicosHTML = '';
+                materia.topicos.forEach((topico, indexTopico) => {
+                    // Verifica se o aluno já marcou como feito (simulação)
+                    const isDone = topico.feito ? 'completed' : '';
+                    
+                    topicosHTML += `
+                        <div class="topico-item ${isDone}" onclick="alternarTopico(this)">
+                            <div class="custom-checkbox">
+                                ${isDone ? '<span class="material-symbols-outlined" style="font-size:16px; color: white">check</span>' : ''}
+                            </div>
+                            <span style="color: #ddd">${topico.nome}</span>
+                        </div>
+                    `;
+                });
+
+                // Cria o Card da Matéria (Acordeão)
+                const htmlMateria = `
+                    <div class="materia-container">
+                        <button class="materia-header" onclick="toggleAcordeon(this)">
+                            <span>${materia.nome}</span>
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </button>
+                        <div class="topicos-list">
+                            ${topicosHTML}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += htmlMateria;
+            });
+        }
+
+        // Funções Globais para interação (precisam estar no window pois é module)
+        window.toggleAcordeon = function(btn) {
+            const container = btn.parentElement;
+            container.classList.toggle('active');
+            const icon = btn.querySelector('.material-symbols-outlined');
+            icon.innerText = container.classList.contains('active') ? 'expand_less' : 'expand_more';
+        }
+
+        window.alternarTopico = function(div) {
+            // Aqui futuramente você salvaria no Firebase que o aluno completou esse tópico
+            div.classList.toggle('completed');
+            const checkbox = div.querySelector('.custom-checkbox');
+            
+            if(div.classList.contains('completed')) {
+                checkbox.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px; color: white">check</span>';
+                checkbox.style.backgroundColor = 'var(--primary-blue)';
+                checkbox.style.borderColor = 'var(--primary-blue)';
+            } else {
+                checkbox.innerHTML = '';
+                checkbox.style.backgroundColor = 'transparent';
+                checkbox.style.borderColor = 'var(--text-gray)';
+            }
+        }
+    </script>
+</body>
+</html>
