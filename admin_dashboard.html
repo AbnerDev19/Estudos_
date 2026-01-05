@@ -1,98 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Mestre - Admin</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/admin.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-
 <body>
-
-    <div class="admin-layout">
-
-        <aside class="admin-sidebar">
-            <div class="admin-logo">
-                <span class="material-symbols-outlined" style="color:var(--admin-accent)">security</span>
-                Portal<span style="color:var(--admin-accent)">.Admin</span>
-                </div>
-
-            <ul class="admin-nav">
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo-area"><h2>Admin<span class="highlight">.Painel</span></h2></div>
+            <ul class="nav-links">
                 <li class="active"><a href="admin_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
-                <li><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar Turmas</a></li>
-                <li><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
+                <li><a href="admin_content.html"><span class="material-symbols-outlined">library_books</span>Gerenciar Turmas</a></li>
                 <li><a href="admin_questions.html"><span class="material-symbols-outlined">quiz</span>Banco de Questões</a></li>
-                <li style="margin-top: auto;"><a href="index.html" style="color:#ff5252"><span class="material-symbols-outlined">logout</span>Sair</a></li>
+                <li><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
             </ul>
+            <div class="user-profile">
+                <div class="avatar-circle">A</div>
+                <div class="user-info"><p class="user-name">Admin</p><a href="index.html" class="logout-link">Sair</a></div>
+            </div>
         </aside>
 
-        <div class="admin-main">
+        <main class="content-area">
             <header class="admin-header">
-                <div>
-                    <h1>Painel de Controle</h1>
-                    <p>Visão geral do desempenho da plataforma.</p>
-                </div>
-                <div style="display:flex; align-items:center; gap:10px; color:white">
-                    <span class="material-symbols-outlined">account_circle</span> Admin
-                </div>
+                <h1>Visão Geral</h1>
+                <button class="btn-save" onclick="location.reload()">Atualizar</button>
             </header>
 
-            <div class="admin-content-scroll">
-
-                <div class="kpi-row">
-                    <div class="kpi-box">
-                        <div class="kpi-icon"><span class="material-symbols-outlined">groups</span></div>
-                        <div class="kpi-info">
-                            <h3>1.240</h3>
-                            <span>Alunos Ativos</span>
-                        </div>
-                    </div>
-                    <div class="kpi-box">
-                        <div class="kpi-icon"><span class="material-symbols-outlined">class</span></div>
-                        <div class="kpi-info">
-                            <h3>12</h3>
-                            <span>Turmas Abertas</span>
-                        </div>
-                    </div>
-                    <div class="kpi-box">
-                        <div class="kpi-icon"><span class="material-symbols-outlined">library_books</span></div>
-                        <div class="kpi-info">
-                            <h3>4.520</h3>
-                            <span>Questões no Banco</span>
-                        </div>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="icon-box blue"><span class="material-symbols-outlined">group</span></div>
+                    <div class="stat-info"><h3 id="total-alunos">...</h3><p>Alunos</p></div>
                 </div>
-
-                <h3 style="color:white; margin-bottom:15px; margin-top:10px">Desempenho das Turmas Principais</h3>
-                <div class="kpi-row" id="dashboard-turmas-stats">
-                    </div>
-
-                <h3 style="color:white; margin-bottom:15px; margin-top:20px">Últimos Cadastros</h3>
-                <div class="table-wrapper">
-                    <table class="adm-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Turma</th>
-                                <th>Status</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-alunos-recentes">
-                            </tbody>
-                    </table>
+                <div class="stat-card">
+                    <div class="icon-box purple"><span class="material-symbols-outlined">quiz</span></div>
+                    <div class="stat-info"><h3 id="total-questoes">...</h3><p>Questões</p></div>
                 </div>
-
+                <div class="stat-card">
+                    <div class="icon-box green"><span class="material-symbols-outlined">school</span></div>
+                    <div class="stat-info"><h3 id="total-turmas">...</h3><p>Turmas</p></div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
-
-    <script type="module" src="js/admin.js"></script>
+    <script type="module" src="js/admin_dashboard.js"></script>
 </body>
-
 </html>

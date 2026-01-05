@@ -2,135 +2,73 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Banco de Questões - Admin</title>
+    <title>Banco de Questões</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-
-    <div class="admin-layout">
-        
-        <aside class="admin-sidebar">
-            <div class="admin-logo">
-                <span class="material-symbols-outlined" style="color:var(--admin-accent)">security</span>
-                Portal<span style="color:var(--admin-accent)">.Admin</span>
-            </div>
-            <ul class="admin-nav">
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo-area"><h2>Admin<span class="highlight">.Painel</span></h2></div>
+            <ul class="nav-links">
                 <li><a href="admin_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Visão Geral</a></li>
-                <li><a href="admin_content.html"><span class="material-symbols-outlined">edit_square</span>Gerenciar Turmas</a></li>
-                <li><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
+                <li><a href="admin_content.html"><span class="material-symbols-outlined">library_books</span>Gerenciar Turmas</a></li>
                 <li class="active"><a href="admin_questions.html"><span class="material-symbols-outlined">quiz</span>Banco de Questões</a></li>
-                <li style="margin-top: auto;"><a href="index.html" style="color:#ff5252"><span class="material-symbols-outlined">logout</span>Sair</a></li>
+                <li><a href="admin_students.html"><span class="material-symbols-outlined">group</span>Alunos</a></li>
             </ul>
         </aside>
 
-        <div class="admin-main">
+        <main class="content-area">
             <header class="admin-header">
-                <div>
-                    <h1>Banco de Questões</h1>
-                    <p>Cadastre questões, defina gabaritos e comentários.</p>
-                </div>
-                <button class="btn-save">+ Nova Questão</button>
+                <h1>Banco de Questões</h1>
+                <button class="btn-save" onclick="location.reload()">Atualizar</button>
             </header>
 
-            <div class="admin-content-scroll">
-                
-                <div class="manager-layout">
-                    
-                    <div class="turmas-list-panel">
-                        <div class="panel-header">
-                            <h3>Filtrar Matéria</h3>
-                        </div>
-                        <div class="list-scroll">
-                            <div class="folder-item">
-                                <div class="folder-header">
-                                    <span class="material-symbols-outlined">folder</span> Direito Constitucional
-                                </div>
-                                <div class="folder-children">
-                                    <div class="sub-item active">Direitos Fundamentais (120)</div>
-                                    <div class="sub-item">Poder Executivo (45)</div>
-                                </div>
-                            </div>
+            <div class="split-view">
+                <div class="list-panel">
+                    <div class="list-scroll">
+                        <p style="padding:20px; color:#666">Carregando banco...</p>
+                    </div>
+                </div>
 
-                            <div class="folder-item">
-                                <div class="folder-header">
-                                    <span class="material-symbols-outlined">folder</span> Língua Portuguesa
-                                </div>
-                                <div class="folder-children">
-                                    <div class="sub-item">Crase (80)</div>
-                                    <div class="sub-item">Sintaxe (200)</div>
-                                </div>
+                <div class="editor-panel">
+                    <div class="editor-top">
+                        <h2 id="q-editor-title">Nova Questão</h2>
+                        <button class="btn-save">Salvar Questão</button>
+                    </div>
+                    <div class="editor-scroll">
+                        <div class="input-group">
+                            <label>Enunciado</label>
+                            <textarea class="area-large" placeholder="Texto da questão..."></textarea>
+                        </div>
+                        
+                        <div class="alternatives-area" style="background:rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-bottom:20px">
+                            <label style="margin-bottom:10px; display:block">Alternativas (Clique na correta)</label>
+                            <div class="option-row"><div class="radio-circle"></div><input type="text" placeholder="A"></div>
+                            <div class="option-row"><div class="radio-circle"></div><input type="text" placeholder="B"></div>
+                            <div class="option-row"><div class="radio-circle"></div><input type="text" placeholder="C"></div>
+                            <div class="option-row"><div class="radio-circle"></div><input type="text" placeholder="D"></div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Comentário</label>
+                            <textarea class="area-medium" placeholder="Explicação..."></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Banca / Ano</label>
+                            <div style="display:flex; gap:10px">
+                                <input type="text" placeholder="Banca (Ex: Cebraspe)">
+                                <input type="text" placeholder="Ano (Ex: 2024)">
                             </div>
                         </div>
                     </div>
-
-                    <div class="editor-panel">
-                        <div class="editor-top">
-                            <h2 id="q-editor-title">Editando Questão #4092</h2>
-                            <div class="actions">
-                                <span class="tag-difficulty medium">Média</span>
-                                <button class="btn-save">Salvar</button>
-                            </div>
-                        </div>
-
-                        <div class="editor-scroll">
-                            
-                            <div class="input-group">
-                                <label>Enunciado da Questão</label>
-                                <textarea class="dark-input area-large" placeholder="Digite o texto da questão aqui..."></textarea>
-                            </div>
-
-                            <label style="color:#888; display:block; margin-bottom:10px">Alternativas (Marque a correta)</label>
-                            
-                            <div class="option-row">
-                                <div class="radio-circle">A</div>
-                                <input type="text" class="dark-input" value="A Constituição não pode ser emendada.">
-                            </div>
-
-                            <div class="option-row correct">
-                                <div class="radio-circle selected">B</div>
-                                <input type="text" class="dark-input" value="Todo poder emana do povo.">
-                                <span class="material-symbols-outlined" style="color:#00e676">check_circle</span>
-                            </div>
-
-                            <div class="option-row">
-                                <div class="radio-circle">C</div>
-                                <input type="text" class="dark-input" value="O presidente é o chefe do legislativo.">
-                            </div>
-
-                            <div class="option-row">
-                                <div class="radio-circle">D</div>
-                                <input type="text" class="dark-input" value="Nenhuma das anteriores.">
-                            </div>
-
-                            <hr class="modal-divider">
-
-                            <div class="input-group">
-                                <label>Comentário / Explicação (Visível após resposta)</label>
-                                <textarea class="dark-input area-medium" placeholder="Explique por que a alternativa B está correta...">A alternativa B reproduz fielmente o Parágrafo Único do Art. 1º da CF/88.</textarea>
-                            </div>
-
-                            <div class="meta-row">
-                                <div class="input-group half">
-                                    <label>Banca</label>
-                                    <input type="text" class="dark-input" value="Cebraspe">
-                                </div>
-                                <div class="input-group half">
-                                    <label>Ano</label>
-                                    <input type="text" class="dark-input" value="2024">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </div>
+        </main>
     </div>
-
     <script type="module" src="js/admin.js"></script>
 </body>
 </html>

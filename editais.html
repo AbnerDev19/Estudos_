@@ -53,35 +53,10 @@
             </div>
         </main>
     </div>
- <script type="module" src="js/editais.js"></script>
-    <script type="module">
-        import { db_editais } from './db_editais.js';
-
-        const container = document.getElementById('lista-editais');
-
-        // Renderiza os cards
-        db_editais.forEach(edital => {
-            const statusClass = edital.aberto ? 'status-open' : 'status-closed';
-            const statusText = edital.aberto ? 'Aberto' : 'Previsto';
-
-            container.innerHTML += `
-                <div class="catalog-card" onclick="window.location.href='edital-detalhes.html?id=${edital.id}'">
-                    <span class="status-badge ${statusClass}">${statusText}</span>
-                    <h3 style="color:white; margin-top:10px">${edital.orgao}</h3>
-                    <p style="color:var(--primary-blue); font-size:0.9rem; margin-bottom:1rem">${edital.banca}</p>
-                    
-                    <div style="display:flex; gap:10px; margin-bottom:1rem">
-                        <small style="color:#aaa">📅 Prova: ${edital.dataProva}</small>
-                    </div>
-
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: ${edital.progressoGeral}%"></div>
-                    </div>
-                    <span class="progress-text">${edital.progressoGeral}% Concluído</span>
-                </div>
-            `;
-        });
-    </script>
+ <script src="js/editais.js"></script>
+ <script src="js/editais_detalhe.js"></script>
+ 
+   
 </body>
 
 </html>
