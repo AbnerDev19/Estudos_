@@ -1,65 +1,67 @@
 // ARQUIVO: js/app.js
-import { auth, provider } from './firebase-config.js'; // Importa a conexão real
+import { auth, db, provider } from './firebase-config.js';
 import { signInWithEmailAndPassword, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const loginForm = document.getElementById('loginForm');
 const btnGoogle = document.getElementById('btn-google');
 const msgErro = document.getElementById('msg-erro');
 const btnEntrar = document.getElementById('btn-entrar');
 
-// --- LOGIN COM EMAIL E SENHA ---
+// Função auxiliar para redirecionar baseado no CARGO (Role)
+async function redirecionarUsuario(user) {
+    try {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const dados = docSnap.data();
+            
+            // VERIFICAÇÃO DE CARGO
+            if (dados.role === 'admin') {
+                window.location.href = "admin_dashboard.html";
+            } else {
+                window.location.href = "dashboard.html";
+            }
+        } else {
+            // Se o usuário existe no Auth mas não no Banco (ex: login antigo)
+            // Mandamos para o dashboard de aluno por segurança
+            window.location.href = "dashboard.html";
+        }
+    } catch (e) {
+        console.error("Erro ao verificar cargo:", e);
+        // Em caso de erro crítico, manda para o aluno
+        window.location.href = "dashboard.html";
+    }
+}
+
+// --- LOGIN EMAIL/SENHA ---
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Feedback visual para o usuário saber que algo está acontecendo
-    btnEntrar.innerText = "Entrando...";
+    btnEntrar.innerText = "Verificando...";
     btnEntrar.disabled = true;
     msgErro.style.display = 'none';
 
     try {
-        // Tenta fazer o login no Firebase
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        
-        console.log("Login realizado com sucesso:", user.email);
-
-        // Lógica simples de redirecionamento (Admin vs Aluno)
-        if(email === "admin@portal.com") {
-            window.location.href = "admin_dashboard.html";
-        } else {
-            window.location.href = "dashboard.html";
-        }
-
+        await redirecionarUsuario(userCredential.user);
     } catch (error) {
-        console.error("Erro no login:", error);
-        msgErro.style.display = 'block';
-        
-        // Mensagens de erro amigáveis em português
-        if(error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-            msgErro.innerText = "E-mail ou senha incorretos.";
-        } else if (error.code === 'auth/too-many-requests') {
-            msgErro.innerText = "Muitas tentativas. Tente novamente mais tarde.";
-        } else {
-            msgErro.innerText = "Erro ao entrar: " + error.message;
-        }
-
-        // Reseta o botão se der erro
         btnEntrar.innerText = "Entrar na Plataforma";
         btnEntrar.disabled = false;
+        msgErro.style.display = 'block';
+        msgErro.innerText = "E-mail ou senha incorretos.";
     }
 });
 
-// --- LOGIN COM GOOGLE ---
+// --- LOGIN GOOGLE ---
 btnGoogle.addEventListener('click', async () => {
     try {
-        await signInWithPopup(auth, provider);
-        // Se der certo, o Firebase já autentica e podemos redirecionar
-        window.location.href = "dashboard.html";
+        const result = await signInWithPopup(auth, provider);
+        await redirecionarUsuario(result.user);
     } catch (error) {
-        console.error(error);
-        alert("Erro ao entrar com Google: " + error.message);
+        alert("Erro no Google: " + error.message);
     }
 });
