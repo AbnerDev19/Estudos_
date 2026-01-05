@@ -1,0 +1,207 @@
+/* ARQUIVO: css/questoes.css */
+
+/* Barra de Filtros (Estilo Card) */
+.filter-bar {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-bar select {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+    padding: 12px 16px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 200px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.filter-bar select:focus {
+    border-color: var(--primary-blue);
+}
+
+.filter-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    background: #1e4bd8;
+}
+
+/* Container da Questão */
+.q-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border-color);
+    min-height: 400px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.q-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+.q-badge {
+    background: rgba(41, 98, 255, 0.15);
+    color: var(--primary-blue);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.q-badge.secondary {
+    background: #323238;
+    color: var(--text-gray);
+}
+
+.q-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    color: var(--text-white);
+    white-space: pre-wrap;
+}
+
+/* Opções de Resposta */
+.q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.q-option {
+    background: var(--bg-color);
+    padding: 16px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.q-option:hover {
+    border-color: var(--primary-blue);
+    background: rgba(41, 98, 255, 0.03);
+}
+
+.q-option.selected {
+    background: rgba(41, 98, 255, 0.1);
+    border-color: var(--primary-blue);
+}
+
+/* Bolinha da Opção */
+.radio-circle {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--text-gray);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.q-option.selected .radio-circle {
+    border-color: var(--primary-blue);
+    background-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(41, 98, 255, 0.2);
+}
+
+/* Feedback (Certo/Errado) */
+.q-option.correct {
+    background: rgba(0, 230, 118, 0.1) !important;
+    border-color: var(--success-green) !important;
+}
+
+.q-option.wrong {
+    background: rgba(247, 90, 104, 0.1) !important;
+    border-color: var(--danger-red) !important;
+}
+
+/* Botões de Ação */
+.action-area {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-action {
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.btn-responder {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-responder:hover {
+    filter: brightness(1.1);
+}
+
+.btn-proxima {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+}
+
+.btn-proxima:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+/* Área de Feedback/Comentário */
+.feedback-area {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    display: none;
+    line-height: 1.6;
+}
+
+.feedback-area.success {
+    background: rgba(0, 230, 118, 0.05);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    color: #e1e1e6;
+    border-left: 4px solid var(--success-green);
+}
+
+.feedback-area.error {
+    background: rgba(247, 90, 104, 0.05);
+    border: 1px solid rgba(247, 90, 104, 0.3);
+    color: #e1e1e6;
+    border-left: 4px solid var(--danger-red);
+}

@@ -1,6 +1,24 @@
 /* ARQUIVO: css/style.css */
 
-/* RESET E CONFIGURAÇÕES */
+:root {
+    --bg-color: #121214;
+    --sidebar-bg: #202024;
+    --card-bg: #202024;
+    --border-color: #323238;
+    
+    --primary-blue: #2962ff;
+    --primary-blue-low: rgba(41, 98, 255, 0.1);
+    
+    --text-white: #e1e1e6;
+    --text-gray: #a8a8b3;
+    
+    --danger-red: #f75a68;
+    --success-green: #00e676;
+    --warning-yellow: #f59e0b; /* Amarelo mais escuro conforme solicitado */
+    
+    --primary-gradient: linear-gradient(90deg, #2962ff 0%, #3949ab 100%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,35 +26,26 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* ARQUIVO: css/style.css */
-
-:root {
-    /* Cores Exatas da Página de Questões (Baseado no admin.css) */
-    --bg-color: #121214;       /* Fundo geral bem escuro */
-    --sidebar-bg: #202024;     /* Fundo da Sidebar (Cinza Chumbo) */
-    --card-bg: #202024;        /* Fundo dos Cards */
-    --border-color: #323238;   /* Cor da borda sutil */
-    
-    --primary-blue: #2962ff;
-    --primary-blue-low: rgba(41, 98, 255, 0.1); /* Fundo do item ativo */
-    
-    --text-white: #e1e1e6;
-    --text-gray: #a8a8b3;
-    --danger-red: #f75a68;
-}
-
 body {
     background-color: var(--bg-color);
     color: var(--text-white);
-    font-family: 'Inter', sans-serif;
-    display: block !important; /* Correção de layout */
+    display: block !important; /* Mantido para não quebrar o dashboard, mas tratado no login */
     height: 100vh;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
 }
 
-/* EFEITO DE FUNDO (GLOW) - Mantido pois dá o charme */
+/* --- WRAPPER PARA CENTRALIZAR LOGIN --- */
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Efeito de Fundo */
 .background-blur {
     position: absolute;
     width: 700px;
@@ -45,34 +54,41 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
 }
 
 /* LOGIN CARD */
 .login-card {
-    background-color: rgba(24, 24, 27, 0.8);
-    /* Translúcido */
+    background-color: rgba(32, 32, 36, 0.9); /* Mais escuro e sólido */
     backdrop-filter: blur(12px);
     padding: 2.5rem;
     border-radius: 16px;
     width: 100%;
     max-width: 420px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .login-header h1 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    /* Texto com Gradiente */
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.login-header p {
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
 /* INPUTS */
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
 .input-group label {
     display: block;
     margin-bottom: 0.5rem;
@@ -83,8 +99,7 @@ body {
 .input-group input {
     width: 100%;
     padding: 14px;
-    background-color: #000000;
-    /* Fundo input bem escuro para contraste */
+    background-color: #121214; /* Fundo input */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-white);
@@ -103,19 +118,52 @@ body {
     width: 100%;
     padding: 14px;
     background: var(--primary-gradient);
-    /* Mantendo o gradiente no botão */
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    margin-top: 1rem;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-login:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3);
+}
+
+.btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* GOOGLE BTN */
+.btn-google {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+.btn-google:hover {
+    background: #f1f1f1;
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
 }
 
 /* UTILS */
@@ -137,15 +185,49 @@ body {
 
 .divider span {
     position: relative;
-    background-color: #18181b;
+    background-color: #202024; /* Cor do Card */
     padding: 0 10px;
     color: var(--text-gray);
     font-size: 0.8rem;
+}
+
+.register-link {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.register-link a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.forgot-pass {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    text-decoration: none;
+}
+
+.forgot-pass:hover {
+    color: var(--text-white);
 }
 
 #msg-erro {
     color: var(--danger-red);
     text-align: center;
     margin-top: 1rem;
+    font-size: 0.9rem;
     display: none;
 }

@@ -6,113 +6,8 @@
     <title>Questões - Portal de Estudos</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/admin.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/questoes.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
-    <style>
-        /* Estilos específicos desta página para não conflitar */
-        .filter-bar {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-            flex-wrap: wrap;
-        }
-        .filter-bar select {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 150px;
-        }
-        .q-container {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            min-height: 400px;
-            position: relative;
-        }
-        .q-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-        .q-badge {
-            background: var(--primary-blue);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 10px;
-        }
-        .q-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #eee;
-            white-space: pre-wrap;
-        }
-        .q-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .q-option {
-            background: var(--bg-color);
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .q-option:hover {
-            border-color: var(--primary-blue);
-            background: rgba(41, 98, 255, 0.05);
-        }
-        .q-option.selected {
-            background: rgba(41, 98, 255, 0.1);
-            border-color: var(--primary-blue);
-        }
-        .q-option.correct {
-            background: rgba(0, 230, 118, 0.1) !important;
-            border-color: #00e676 !important;
-        }
-        .q-option.wrong {
-            background: rgba(255, 82, 82, 0.1) !important;
-            border-color: #ff5252 !important;
-        }
-        .btn-action {
-            padding: 12px 30px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-        .btn-responder { background: var(--primary-blue); color: white; }
-        .btn-proxima { background: var(--card-bg); border: 1px solid var(--border-color); color: white; margin-left: 10px;}
-        
-        .feedback-area {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            display: none;
-        }
-        .feedback-area.success { background: rgba(0, 230, 118, 0.1); color: #00e676; border: 1px solid #00e676; }
-        .feedback-area.error { background: rgba(255, 82, 82, 0.1); color: #ff5252; border: 1px solid #ff5252; }
-    </style>
 </head>
 <body>
     <div class="background-blur dashboard-blur"></div>
@@ -154,12 +49,13 @@
                 <select id="filtro-banca">
                     <option value="">Todas as Bancas</option>
                     </select>
-                <button class="btn-save" id="btn-filtrar" style="width: auto; padding: 0 20px;">Filtrar</button>
+                <button class="filter-btn" id="btn-filtrar">Filtrar Questões</button>
             </div>
 
             <div class="q-container" id="questoes-area">
                 <div style="text-align:center; color:#666; padding-top:100px;">
-                    Carregando banco de questões...
+                    <span class="material-symbols-outlined" style="font-size: 48px; margin-bottom: 10px;">hourglass_empty</span>
+                    <p>Carregando banco de questões...</p>
                 </div>
             </div>
 
