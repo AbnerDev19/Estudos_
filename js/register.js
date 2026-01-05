@@ -26,21 +26,21 @@ registerForm.addEventListener('submit', async (e) => {
     btnCadastrar.disabled = true;
 
     try {
-        // 1. Cria autenticação (Email/Senha)
+        // 1. Cria o usuário na autenticação
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. Atualiza nome no Auth
+        // 2. Atualiza o nome de exibição
         await updateProfile(user, { displayName: nome });
 
-        // 3. CRIA O DOCUMENTO DO USUÁRIO NO FIRESTORE COM O CARGO
-        // Isso é crucial para a personalização e segurança
+        // 3. SALVA NO BANCO DE DADOS (Obrigatório para o login funcionar depois)
         await setDoc(doc(db, "users", user.uid), {
             nome: nome,
             email: email,
-            role: "student", // <--- Todo mundo nasce aluno
+            role: "student", // Todo mundo começa como aluno
             dataCadastro: new Date().toISOString(),
-            estatisticas: { // Inicializa stats vazios para não dar erro no painel
+            // Cria estrutura básica para não dar erro no painel
+            estatisticas: { 
                 painel_v2: {
                     kpis: { taxaAcerto: 0, questoesResolvidas: 0 },
                     historicoSimulados: { labels: ['Início'], notas: [0] }
@@ -54,11 +54,7 @@ registerForm.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error(error);
         msgErro.style.display = 'block';
-        if (error.code === 'auth/email-already-in-use') {
-            msgErro.innerText = "Este e-mail já está em uso.";
-        } else {
-            msgErro.innerText = "Erro: " + error.message;
-        }
+        msgErro.innerText = "Erro ao cadastrar: " + error.message;
         btnCadastrar.innerText = "Criar Conta";
         btnCadastrar.disabled = false;
     }
