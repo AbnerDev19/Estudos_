@@ -1,36 +1,30 @@
 // ARQUIVO: js/app.js
-import { auth, db, provider } from './firebase-config.js';
+import { auth, provider } from './firebase-config.js';
 import { signInWithEmailAndPassword, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const loginForm = document.getElementById('loginForm');
 const btnGoogle = document.getElementById('btn-google');
 const msgErro = document.getElementById('msg-erro');
 const btnEntrar = document.getElementById('btn-entrar');
 
-// Função auxiliar para redirecionar baseado no CARGO (Role)
-async function redirecionarUsuario(user) {
-    try {
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
+// --- LISTA DE PROFESSORES/ADMINS ---
+// Coloque aqui o SEU email e de quem mais for professor
+const ADMIN_EMAILS = [
+    "abneroliveira19072004@gmail.com", 
+    "abner@exemplo.com", 
+    "professor@escola.com" 
+];
 
-        if (docSnap.exists()) {
-            const dados = docSnap.data();
-            
-            // VERIFICAÇÃO DE CARGO
-            if (dados.role === 'admin') {
-                window.location.href = "admin_dashboard.html";
-            } else {
-                window.location.href = "dashboard.html";
-            }
-        } else {
-            // Se o usuário existe no Auth mas não no Banco (ex: login antigo)
-            // Mandamos para o dashboard de aluno por segurança
-            window.location.href = "dashboard.html";
-        }
-    } catch (e) {
-        console.error("Erro ao verificar cargo:", e);
-        // Em caso de erro crítico, manda para o aluno
+// Função simples de redirecionamento
+function redirecionar(user) {
+    console.log("Verificando acesso para:", user.email);
+    
+    // Verifica se o email está na lista de admins
+    if (ADMIN_EMAILS.includes(user.email)) {
+        console.log("É Admin!");
+        window.location.href = "admin_dashboard.html";
+    } else {
+        console.log("É Aluno!");
         window.location.href = "dashboard.html";
     }
 }
@@ -41,18 +35,24 @@ loginForm.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    btnEntrar.innerText = "Verificando...";
+    btnEntrar.innerText = "Entrando...";
     btnEntrar.disabled = true;
     msgErro.style.display = 'none';
 
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        await redirecionarUsuario(userCredential.user);
+        redirecionar(userCredential.user);
     } catch (error) {
-        btnEntrar.innerText = "Entrar na Plataforma";
+        console.error(error);
+        btnEntrar.innerText = "Acessar Painel";
         btnEntrar.disabled = false;
         msgErro.style.display = 'block';
-        msgErro.innerText = "E-mail ou senha incorretos.";
+        
+        if(error.code === 'auth/invalid-credential') {
+            msgErro.innerText = "Email ou senha incorretos.";
+        } else {
+            msgErro.innerText = "Erro: " + error.message;
+        }
     }
 });
 
@@ -60,8 +60,9 @@ loginForm.addEventListener('submit', async (e) => {
 btnGoogle.addEventListener('click', async () => {
     try {
         const result = await signInWithPopup(auth, provider);
-        await redirecionarUsuario(result.user);
+        redirecionar(result.user);
     } catch (error) {
+        console.error(error);
         alert("Erro no Google: " + error.message);
     }
 });

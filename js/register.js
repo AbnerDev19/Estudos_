@@ -26,20 +26,19 @@ registerForm.addEventListener('submit', async (e) => {
     btnCadastrar.disabled = true;
 
     try {
-        // 1. Cria o usuário na autenticação
+        // 1. Cria o usuário
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. Atualiza o nome de exibição
+        // 2. Define o nome
         await updateProfile(user, { displayName: nome });
 
-        // 3. SALVA NO BANCO DE DADOS (Obrigatório para o login funcionar depois)
+        // 3. Cria o documento do aluno no banco (Necessário para o Painel Tático funcionar)
         await setDoc(doc(db, "users", user.uid), {
             nome: nome,
             email: email,
-            role: "student", // Todo mundo começa como aluno
             dataCadastro: new Date().toISOString(),
-            // Cria estrutura básica para não dar erro no painel
+            // Inicializa stats zerados
             estatisticas: { 
                 painel_v2: {
                     kpis: { taxaAcerto: 0, questoesResolvidas: 0 },
@@ -48,13 +47,13 @@ registerForm.addEventListener('submit', async (e) => {
             }
         });
 
-        alert(`Conta criada com sucesso! Bem-vindo(a), ${nome}.`);
-        window.location.href = "dashboard.html";
+        alert("Conta criada com sucesso!");
+        window.location.href = "dashboard.html"; // Todo cadastro novo vai pro painel de aluno
 
     } catch (error) {
         console.error(error);
         msgErro.style.display = 'block';
-        msgErro.innerText = "Erro ao cadastrar: " + error.message;
+        msgErro.innerText = "Erro: " + error.message;
         btnCadastrar.innerText = "Criar Conta";
         btnCadastrar.disabled = false;
     }
